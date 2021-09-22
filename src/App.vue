@@ -1,11 +1,15 @@
 <template>
   <v-app id="inspire">
     <v-app-bar app color="#119DA4" flat dark>
+      
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-lg-none"></v-app-bar-nav-icon>
+     
       <v-container class="py-0 fill-height">
-        <v-avatar color="grey darken-1" size="45">
+        <template v-if="loggedIn">
+        <v-avatar class="mr-10 d-none d-lg-block" color="grey darken-1" size="45">
           <v-img src="https://randomuser.me/api/portraits/men/22.jpg"></v-img>
         </v-avatar>
-        <router-link class="clean-router" to="/profile">
+        <router-link class="d-none d-lg-block" to="/profile">
         <v-btn v-for="link in links" :key="link" text>
           {{ link }}
         </v-btn>
@@ -22,6 +26,7 @@
             solo-inverted
           ></v-text-field>
         </v-responsive>
+        </template>
       </v-container>
     </v-app-bar>
 
@@ -47,7 +52,7 @@
           ></v-text-field>
         </v-responsive>
       </v-app-bar>
-      
+      -->
       <v-navigation-drawer v-model="drawer" absolute temporary>
         <v-list-item>
           <router-link class="clean-router" to="/profile">
@@ -107,14 +112,14 @@
           </div>
         </template>
       </v-navigation-drawer>
-    </div>
-    -->
+    
+    
 
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
-          <template v-if="loggedIn">
-          <v-col cols="2">
+          <template v-if="loggedIn" >
+          <v-col cols="2" class="d-none d-lg-block">
              
             <v-sheet rounded="lg">
               <v-list color="transparent">
