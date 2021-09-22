@@ -1,6 +1,10 @@
 <template>
   <section id="hero">
-    <v-parallax dark src="https://flcard.com/wp-content/uploads/2020/07/Medical-Header-2.jpg" height="750">
+    <v-parallax
+      dark
+      src="https://flcard.com/wp-content/uploads/2020/07/Medical-Header-2.jpg"
+      height="750"
+    >
       <v-row align="center" justify="center">
         <v-col cols="10">
           <v-row align="center" justify="center">
@@ -16,12 +20,28 @@
                 outlined
                 large
                 dark
-                @click="$vuetify.goTo('#features')"
+                @click="snackbar = true"
                 class="mt-5"
               >
                 Solicitar Turno
-                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+                <!-- <v-icon class="ml-2">mdi-arrow-down</v-icon> -->
               </v-btn>
+              <div class="text-center">
+              <v-snackbar :top=true style="z-index:99999;" v-model="snackbar">
+                {{ text }}
+
+                <template v-slot:action="{ attrs }">
+                  <v-btn
+                    color="pink"
+                    text
+                    v-bind="attrs"
+                    @click="snackbar = false"
+                  >
+                    Close
+                  </v-btn>
+                </template>
+              </v-snackbar>
+              </div>
               <div class="video d-flex align-center py-4">
                 <a @click.stop="dialog = true" class="playBut">
                   <svg
@@ -131,9 +151,11 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
   data() {
     return {
+      snackbar: false,
+      text: `Debe iniciar sesion para poder sacar un turno`,
       dialog: false,
       videoId: "i8IvvHJssWE",
       features: [

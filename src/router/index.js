@@ -8,6 +8,9 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
     component: Home
   },
   {
@@ -33,7 +36,25 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
-  }
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    // lazy-loaded
+    component: () => import('../views/users/Profile.vue')
+  },
+  {
+    path: '/turnos',
+    name: 'turnos',
+    // lazy-loaded
+    component: () => import('../views/users/Turnos.vue')
+  },
+  {
+    path: '/historial_medico',
+    name: 'historial_medico',
+    // lazy-loaded
+   
+  },
 ]
 
 const router = new VueRouter({
