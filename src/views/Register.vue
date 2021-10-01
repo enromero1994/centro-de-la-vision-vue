@@ -60,20 +60,26 @@
                   v-model="user.lastname"
                   name="lastname"
                   :counter="30"
-                
                   label="Apellido"
                   required
                 ></v-text-field>
               </v-col>
-                        <v-col class="pb-0 mb-0" cols="12" lg="12" md="12" sm="12">
+              <v-col class="pb-0 mb-0" cols="6" lg="6" md="12" sm="12">
+                <v-select
+                  v-model="user.dni_type"
+                  :items="items"
+                  label="Tipo DNI"
+                  outlined
+                ></v-select>
+              </v-col>
+              <v-col class="pb-0 mb-0" cols="12" lg="6" md="12" sm="12">
                 <v-text-field
-                type="number"
+                  type="number"
                   solo
                   outlined
                   v-model="user.dni"
                   name="dni"
                   :counter="8"
-                
                   label="DNI"
                   required
                 ></v-text-field>
@@ -178,6 +184,7 @@ import User from "../models/user";
 export default {
   data() {
     return {
+      items: ["DNI"],
       user: new User("", "", ""),
       submitted: false,
       successful: "false",
@@ -228,7 +235,7 @@ export default {
     handleRegister() {
       this.message = "";
       this.submitted = true;
-      console.log(this.user)
+      console.log("Registro", this.user);
       this.$store.dispatch("auth/register", this.user).then(
         (data) => {
           this.message = data.message;

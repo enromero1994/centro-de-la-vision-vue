@@ -32,6 +32,7 @@ class AuthService {
       email: user.email,
       lastname : user.lastname,
       dni: user.dni,
+      dni_type: user.dni_type,
       password: user.password,
       password_confirmation: user.password,
       role_id: 1

@@ -40,21 +40,25 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    // lazy-loaded
+
     component: () => import('../views/users/Profile.vue')
   },
   {
     path: '/turnos',
     name: 'turnos',
-    // lazy-loaded
+ 
     component: () => import('../views/users/Turnos.vue')
   },
   {
     path: '/historial_medico',
     name: 'historial_medico',
-    // lazy-loaded
    
   },
+  {
+    path: '/buscar_paciente',
+    name : 'buscar_paciente',
+    component: () => import('../views/admision/BuscarPaciente.vue')
+  }
 ]
 
 const router = new VueRouter({
