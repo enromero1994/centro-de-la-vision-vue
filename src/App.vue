@@ -122,45 +122,44 @@
         <v-row>
           <template v-if="loggedIn">
             <v-col cols="2" class="d-none d-lg-block">
-              <v-sheet rounded="lg">
-                <v-list color="transparent">
-                  <v-list-item v-for="n in linksByRol" :key="n">
+              <v-list>
+                <v-list-item-group v-model="model" mandatory color="indigo">
+                  <v-template  v-for="n in linksByRol" :key="n">
+                  <router-link style="text-decoration:none"
+                        :to="{ name: n.link, params: { userId: 123 } }"
+                      >
+                  <v-list-item>
                     
                     <v-list-item-content>
-                      <router-link
-                        :to="{ name: n.link, params: { userId: 123 } }"
-                      > 
-                        
+                      
                         <v-list-item-title>
-                          
                           {{ n.name }}
                         </v-list-item-title>
-                      </router-link>
+                      
                     </v-list-item-content>
                     
                   </v-list-item>
+                  </router-link>
+                  </v-template>
+                </v-list-item-group>
+                <v-divider class="my-2"></v-divider>
 
-                  <v-divider class="my-2"></v-divider>
-
-                  <v-list-item link color="grey lighten-4">
-                    <v-list-item-content>
-                      <v-list-item-title style="text-align: center">
-                        <a href @click.prevent="logOut" class="clean-router">
-                          <span class="mr-2"
-                            >Cerrar Sesion</span
-                          >
-                        </a>
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-              </v-sheet>
+                <v-list-item link color="grey lighten-4">
+                  <v-list-item-content>
+                    <v-list-item-title style="text-align: center">
+                      <a href @click.prevent="logOut" class="clean-router">
+                        <span class="mr-2">Cerrar Sesion</span>
+                      </a>
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
             </v-col>
           </template>
           <v-col>
             <v-sheet min-height="70vh" rounded="lg">
               <!--  -->
-               
+
               <router-view />
             </v-sheet>
           </v-col>
@@ -183,9 +182,9 @@ export default {
     drawer: null,
     links: ["Home", "Perfil", "Mensajes", "Soporte"],
     linksNav: [
-      { name: "Turnos", link: "turnos" },
-      { name: "Historia Medica", link: "historial_medico" },
       { name: "Buscar Paciente", link: "buscar_paciente", rol: 4 },
+      { name: "Turnos", rol: 4 },
+      { name: "Agenda", rol: 4 },
     ],
   }),
 
@@ -196,12 +195,12 @@ export default {
     currentUser() {
       return this.$store.state.auth.user;
     },
-    linksByRol(){
+    linksByRol() {
       //Filtro arreglo por rol y lo devuelvo por la propiedad computada para recorrerlo con el arreglo del menu.
-      var links = this.linksNav
-      var user_rol = this.$store.state.auth.user.user.role_id
-      return links.filter(rol => rol.rol == user_rol)
-    }
+      var links = this.linksNav;
+      var user_rol = this.$store.state.auth.user.user.role_id;
+      return links.filter((rol) => rol.rol == user_rol);
+    },
   },
   methods: {
     logOut() {
