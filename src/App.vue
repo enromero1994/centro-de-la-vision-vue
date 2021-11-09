@@ -66,11 +66,11 @@
             <v-img src="https://randomuser.me/api/portraits/men/22.jpg"></v-img>
           </v-list-item-avatar>
         </router-link>
-        <v-list-item-content>
+        <!-- <v-list-item-content>
           <v-list-item-title v-if="currentUser">{{
-            `${currentUser.user.name}  ${currentUser.user.lastname}`
+            `${currentUser.name}  ${currentUser.lastname}`
           }}</v-list-item-title>
-        </v-list-item-content>
+        </v-list-item-content> -->
       </v-list-item>
 
       <v-divider></v-divider>
@@ -157,9 +157,9 @@
             </v-col>
           </template>
           <v-col>
+          
             <v-sheet min-height="70vh" rounded="lg">
-              <!--  -->
-
+        
               <router-view />
             </v-sheet>
           </v-col>
@@ -183,22 +183,28 @@ export default {
     links: ["Home", "Perfil", "Mensajes", "Soporte"],
     linksNav: [
       { name: "Buscar Paciente", link: "buscar_paciente", rol: 4 },
-      { name: "Turnos", rol: 4 },
-      { name: "Agenda", rol: 4 },
+      { name: "Turnos", link: "turnos",rol: 4 },
+      { name: "Agenda", link: "agenda",rol: 4 },
     ],
   }),
+
+
+
 
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
     currentUser() {
-      return this.$store.state.auth.user;
+      return this.$store.state.auth.user.data;
     },
     linksByRol() {
       //Filtro arreglo por rol y lo devuelvo por la propiedad computada para recorrerlo con el arreglo del menu.
       var links = this.linksNav;
-      var user_rol = this.$store.state.auth.user.user.role_id;
+      //!! ALERT : Estamos trayendo los usuarios desde el state que obtiene la data del localstorage: Es mala practica porque cambiando el rol del
+      // localstorage pueden activar el menu. No guardar esta informacion en el localstorage, solo guardar el token para futuras peticiones.
+       var user_rol = this.$store.state.auth.user.data.role_id;
+      
       return links.filter((rol) => rol.rol == user_rol);
     },
   },

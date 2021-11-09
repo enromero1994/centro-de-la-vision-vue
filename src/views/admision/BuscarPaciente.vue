@@ -34,18 +34,18 @@
                   <form>
                     <v-text-field
                       disabled
-                      v-model="Usuario.name"
+                      v-model="Usuario.nombre"
                       label="Nombre Paciente"
                     ></v-text-field>
                     <v-text-field
                       disabled
-                      v-model="Usuario.lastname"
+                      v-model="Usuario.apellido"
                       label="Apellido Paciente"
                     ></v-text-field>
 
                     <v-text-field
                       disabled
-                      v-model="Usuario.dni_type"
+                      v-model="Usuario.dni_tipo"
                       label="Tipo de Documento"
                     ></v-text-field>
                     <v-text-field
@@ -55,7 +55,7 @@
                     ></v-text-field>
                     <v-text-field
                       disabled
-                      v-model="Usuario.address"
+                      v-model="Usuario.direccion"
                       label="Direccion"
                     ></v-text-field>
                     <v-text-field
@@ -107,11 +107,13 @@ export default {
         .dispatch("admision/buscarPacienteByDni", this.searchByDni)
         .then(
           (data) => {
-            console.log("traemos la data:", data);
-            if (data.message) {
-              this.Usuario = data;
+            //console.log("traemos la data:", data);
+            if (data.data) {
+              console.log("Data" ,data.data)
+              this.Usuario = data.data;
             } else {
-              this.Usuario = data.user[0];
+              console.log("nada")
+              this.Usuario = data
             }
           },
           (error) => {
