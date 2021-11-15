@@ -42,6 +42,18 @@ export const admision = {
           }
         );
       },
+      asignarTurno({ commit }, TurnoAsignado) {
+        return AdmisionService.asignarTurno(TurnoAsignado).then(
+          turnoAsignado => {
+            console.log('here',turnoAsignado)
+            return Promise.resolve(turnoAsignado);
+          },
+          error => {
+           
+            return Promise.reject(error);
+          }
+        );
+      },
     },
     mutations: {
       getProfesionales(state,profesionales){

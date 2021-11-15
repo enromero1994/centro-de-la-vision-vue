@@ -32,6 +32,25 @@ class AdmisionService {
             return response.data;
           });
       }
+      asignarTurno(TurnoAsignado){
+          //probar enviando solo TurnoAsignado dado que ya viene con los mismos atributos
+          console.log('Este es el turno asignado',TurnoAsignado)
+        return axios.post(API_URL + 'turno',{
+            agenda_id : TurnoAsignado.agenda_id,
+            o_s_id : TurnoAsignado.o_s_id,
+            patient_id : TurnoAsignado.patient_id
+
+
+        },
+            { headers: authHeader()})
+          .then(response => {
+            if (response.data) {
+              
+            }
+      
+            return response.data;
+          });
+      }
  
 
 }

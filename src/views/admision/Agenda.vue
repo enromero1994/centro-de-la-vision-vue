@@ -276,7 +276,7 @@ export default {
     practices: [],
     //
     dialog: false,
-    type: "day",
+    type: "week",
     types: ["month", "week", "day", "4day"],
     mode: "stack",
     modes: ["stack", "column"],
