@@ -6,7 +6,7 @@
           <v-col cols="12">
             <v-card elevation="2" height="80">
               <v-card-title>
-                Agenda
+                Agenda.
                 <v-spacer></v-spacer>
 
                 <v-dialog v-model="dialog" persistent max-width="600px">
