@@ -10,7 +10,7 @@ class AuthService {
         password: user.password
       })
       .then(response => {
-      
+
         if (response.data) {
           localStorage.setItem('user', JSON.stringify(response.data));
           // localStorage.setItem('user', JSON.stringify(response.data));
@@ -28,13 +28,17 @@ class AuthService {
     console.log('Enviamos esto , ' + user)
     return axios.post(API_URL + 'register', {
       // name: user.username,
-      name : user.name,
+      name: user.name,
       email: user.email,
-      lastname : user.lastname,
+      lastname: user.lastname,
       dni: user.dni,
+      dni_type: user.dni_type,
       password: user.password,
       password_confirmation: user.password,
-      role_id: 1
+      role_id: 4,
+      celular: user.phone,
+      o_s_id: user.os
+
     });
   }
 }

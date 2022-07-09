@@ -10,11 +10,11 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <img src="@/assets/img/logo.png" alt="Logo" />
+            <img src="@/assets/logo.png" alt="Logo" />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="title">Calango</v-list-item-title>
-            <v-list-item-subtitle>WEB</v-list-item-subtitle>
+            <v-list-item-title class="title">Centro de la Vision</v-list-item-title>
+            <!-- <v-list-item-subtitle>WEB</v-list-item-subtitle> -->
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -26,7 +26,7 @@
           v-for="([icon, text, link], i) in items"
           :key="i"
           link
-          @click="$vuetify.goTo(link)"
+          @click="redirect(link)"
         >
           <v-list-item-icon class="justify-center">
             <v-icon>{{ icon }}</v-icon>
@@ -49,7 +49,7 @@
       :class="{ expand: flat }"
     >
       <v-toolbar-title>
-        <v-img src="@/assets/img/logo.png" max-width="50px" />
+        <v-img src="@/assets/logo.png" max-width="50px" />
       </v-toolbar-title>
       <v-spacer />
       <v-app-bar-nav-icon
@@ -100,7 +100,8 @@ export default {
     drawer: null,
     isXs: false,
     items: [
-      ["mdi-home-outline", "Home", "#hero"]
+     
+      ["mdi-login", "Iniciar Sesion","login"]
     ],
   }),
   props: {
@@ -111,6 +112,10 @@ export default {
     onResize() {
       this.isXs = window.innerWidth < 850;
     },
+    redirect(link){
+      console.log(`Redireccionamos a ${link}`)
+      this.$router.push(link)
+    }
   },
 
   watch: {

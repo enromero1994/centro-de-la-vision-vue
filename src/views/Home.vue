@@ -1,41 +1,18 @@
 <template>
 <div>
-  <navigation :color="color" :flat="flat" />
-  <Header></Header>
-      <v-scale-transition>
-      <v-btn
-        fab
-        v-show="fab"
-        v-scroll="onScroll"
-        dark
-        fixed
-        bottom
-        right
-        color="secondary"
-        @click="toTop"
-      >
-        <v-icon>mdi-arrow-up</v-icon>
-      </v-btn>
-    </v-scale-transition>
+
 </div>
 
 </template>
 
 <script>
 
-import navigation from "../components/Navigation";
-import Header from "../components/Header.vue"
 
 
 
   export default {
     name: 'Home',
 
-    components: {
-      // Landing
-      navigation,
-      Header
-    },
      data: () => ({
     fab: null,
     color: "",
@@ -54,6 +31,8 @@ import Header from "../components/Header.vue"
     }
       if (this.loggedIn) {
       this.$router.push("/profile");
+    }else{
+      this.$router.push("/login");
     }
   },
 
